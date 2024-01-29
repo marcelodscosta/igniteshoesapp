@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
+
 import { StatusBar } from 'react-native';
-import OneSignal from 'react-native-onesignal';
+import OneSignal, { NotificationReceivedEvent } from 'react-native-onesignal';
 
 import { Roboto_400Regular, Roboto_700Bold, useFonts } from '@expo-google-fonts/roboto';
 import { NativeBaseProvider } from 'native-base';
@@ -18,6 +20,15 @@ export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
 
   tagUserInfoCreate();
+
+  useEffect(() => {
+    const unsubscribe = OneSignal
+      .setNotificationWillShowInForegroundHandler((notificationReceivedEvent: NotificationReceivedEvent) => {
+        console.log(notificationReceivedEvent);
+
+      });
+  }, [])
+
 
   return (
     <NativeBaseProvider theme={THEME}>
