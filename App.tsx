@@ -10,11 +10,14 @@ import { Loading } from './src/components/Loading';
 import { THEME } from './src/theme';
 
 import { CartContextProvider } from './src/contexts/CartContext';
+import { tagUserEmailCreate } from './src/notifications/notificationsTags';
 
 OneSignal.setAppId('528abd34-dc31-4da8-b134-d4e7f255aa2c');
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
+
+  tagUserEmailCreate('marcelodscosta@yahoo.com.br');
 
   return (
     <NativeBaseProvider theme={THEME}>
